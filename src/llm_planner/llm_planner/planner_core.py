@@ -11,8 +11,8 @@ GPU = 0
 if torch.cuda.is_available():
     torch.cuda.set_device(GPU)
 
-# OpenAI クライアント設定
-OPENAI_KEY = "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" # 例: export OPENAI_API_KEY="sk-xxxx"
+# OpenAI settings
+OPENAI_KEY = "" # example: export OPENAI_API_KEY="sk-xxxx"
 client = None
 if OPENAI_KEY:
     client = OpenAI(api_key=OPENAI_KEY)
@@ -33,8 +33,7 @@ if source == 'openai':
         "temperature": 0.7,
         "top_p": 0.9,
         "max_tokens": 128,
-        "n": 5,  # 複数サンプル生成
-        # "logprobs": 1,  # ← Chat APIでは未サポートなので削除 or コメントアウト
+        "n": 5,
         "presence_penalty": 0.0,
         "frequency_penalty": 0.0,
         "stop": ["\n"]
@@ -186,4 +185,5 @@ def task_planner(task):
             print(f'Step {step}: {formatted_action}')
             result.append(formatted_action)
             
+
     return ",".join(result)
